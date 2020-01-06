@@ -1,0 +1,99 @@
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let p of player">
+            <div style="font-size: 14px; color:#737373; font-weight: bold;">
+              {{p}}
+            </div>
+          </ion-col>
+          <ion-col>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngFor="let p of player">
+            <div (click)="toogleRole(p)" style="cursor: pointer; width: 100%;"> 
+              {{getRole(p)}}
+            </div>           
+          </ion-col>
+          <ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col>Re</ion-col>
+          <ion-col>Contra</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Fuchs gefangen</ion-col>
+          <ion-col>
+            <ion-checkbox [checked]="result.re.fuchs[0]"></ion-checkbox>
+            <ion-checkbox [checked]="result.re.fuchs[1]"></ion-checkbox>
+          </ion-col>
+          <ion-col>
+            <ion-checkbox [checked]="result.contra.fuchs[0]"></ion-checkbox>
+            <ion-checkbox [checked]="result.contra.fuchs[1]"></ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Fuchs am Pin</ion-col>
+          <ion-col>
+            <ion-checkbox [checked]="result.re.fuchsAmPin"></ion-checkbox>
+          </ion-col>
+          <ion-col>
+            <ion-checkbox [checked]="result.contra.fuchsAmPin"></ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Karlchen</ion-col>
+          <ion-col>
+            <ion-checkbox [checked]="result.re.karl"></ion-checkbox>
+          </ion-col>
+          <ion-col>
+            <ion-checkbox [checked]="result.contra.karl"></ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Doppelkopf</ion-col>
+          <ion-col>
+            <ion-input type="number" min="0" max="4" [(ngModel)]="result.re.doppelkopf"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input type="number" min="0" max="4" [(ngModel)]="result.contra.doppelkopf"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Ansage</ion-col>
+          <ion-col>
+            <ion-range min="0" max="120" step="30" snaps="true" ticks="true" pin="true"  [(ngModel)]="result.re.ansage"></ion-range>
+          </ion-col>
+          <ion-col>
+            <ion-range min="0" max="120" step="30" snaps="true" ticks="true" pin="true"  [(ngModel)]="result.contra.ansage"></ion-range>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Punkte</ion-col>
+          <ion-col>
+            <ion-input type="number" [(ngModel)]="result.re.punkte" (ionChange)="onRePointsChanged()" required min="0" max="240"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input type="number" [(ngModel)]="result.contra.punkte" (ionChange)="onContraPointsChanged()" requiredmin="0" max="240"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="save()" color="success">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
